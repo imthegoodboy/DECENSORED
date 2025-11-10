@@ -3,7 +3,10 @@
 import { useAccount, useDisconnect } from 'wagmi';
 import { useWeb3Modal } from '@web3modal/wagmi/react';
 import Link from 'next/link';
-import { MessageSquare, Home, Users, TrendingUp } from 'lucide-react';
+import { MessageSquare, Home, Users, TrendingUp, Mail, User } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
+import { useState } from 'react';
+import MessagesModal from './MessagesModal';
 
 interface NavbarProps {
   user: any;
@@ -13,19 +16,23 @@ export default function Navbar({ user }: NavbarProps) {
   const { isConnected, address } = useAccount();
   const { open } = useWeb3Modal();
   const { disconnect } = useDisconnect();
+  const [showMessages, setShowMessages] = useState(false);
 
   return (
-    <nav className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2">
-              <MessageSquare className="h-8 w-8 text-primary-600" />
-              <span className="text-2xl font-bold text-gray-900 dark:text-white">
-                DECENSORED
-              </span>
-            </Link>
-          </div>
+    <>
+      <nav className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <Link href="/" className="flex items-center space-x-2">
+                <div className="h-8 w-8 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
+                  <MessageSquare className="h-5 w-5 text-white" />
+                </div>
+                <span className="text-2xl font-bold text-gray-900 dark:text-white">
+                  DECENSORED
+                </span>
+              </Link>
+            </div>
 
           <div className="flex items-center space-x-4">
             {isConnected && (
