@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const SIDESHIFT_API_KEY = process.env.SIDESHIFT_API_KEY;
 const SIDESHIFT_API_SECRET = process.env.SIDESHIFT_API_SECRET;
-const SIDESHIFT_BASE_URL = 'https://api.sideshift.ai/v2';
+const SIDESHIFT_BASE_URL = 'https://sideshift.ai/api/v2';
 
 export interface SideShiftQuote {
   depositCoin: string;
@@ -50,9 +50,9 @@ export class SideShiftClient {
 
   async getQuote(params: SideShiftQuote): Promise<any> {
     try {
+      // Public API doesn't require auth for quotes
       const response = await axios.get(`${SIDESHIFT_BASE_URL}/quotes`, {
         params,
-        headers: this.getAuthHeaders(),
       });
       return response.data;
     } catch (error: any) {
