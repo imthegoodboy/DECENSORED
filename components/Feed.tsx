@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import PostCard from './PostCard';
 import CreatePost from './CreatePost';
+import LoadingSpinner from './LoadingSpinner';
 import axios from 'axios';
 
 interface FeedProps {
