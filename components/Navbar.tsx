@@ -33,6 +33,10 @@ export default function Navbar({ user }: NavbarProps) {
               </Link>
             </div>
 
+            <div className="flex-1 flex items-center justify-center mx-8">
+              <SearchBar />
+            </div>
+
             <div className="flex items-center space-x-4">
               {isConnected && (
                 <>
