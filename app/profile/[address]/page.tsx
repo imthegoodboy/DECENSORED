@@ -108,19 +108,31 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        <div className="space-y-4">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-            Posts ({posts.length})
-          </h2>
-          {posts.length === 0 ? (
-            <div className="text-center py-12 text-gray-500">
-              <p>No posts yet.</p>
-            </div>
-          ) : (
-            posts.map((post) => (
-              <PostCard key={post._id} post={post} user={currentUser} />
-            ))
-          )}
+        <div className="border-t border-gray-200 dark:border-gray-700">
+          <div className="flex border-b border-gray-200 dark:border-gray-700">
+            <button className="flex-1 py-4 px-6 text-center font-semibold text-gray-900 dark:text-white border-b-2 border-primary-600">
+              Posts ({posts.length})
+            </button>
+            <button className="flex-1 py-4 px-6 text-center font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
+              Media
+            </button>
+            <button className="flex-1 py-4 px-6 text-center font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
+              Likes
+            </button>
+          </div>
+          <div className="space-y-0">
+            {posts.length === 0 ? (
+              <div className="text-center py-12 text-gray-500">
+                <p>No posts yet.</p>
+              </div>
+            ) : (
+              posts.map((post) => (
+                <div key={post._id} className="border-b border-gray-200 dark:border-gray-700">
+                  <PostCard post={post} user={currentUser} />
+                </div>
+              ))
+            )}
+          </div>
         </div>
       </main>
     </div>
