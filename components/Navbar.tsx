@@ -34,67 +34,85 @@ export default function Navbar({ user }: NavbarProps) {
               </Link>
             </div>
 
-          <div className="flex items-center space-x-4">
-            {isConnected && (
-              <>
-                <Link
-                  href="/"
-                  className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-primary-600"
-                >
-                  <Home className="h-5 w-5" />
-                  <span>Home</span>
-                </Link>
-                <Link
-                  href="/communities"
-                  className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-primary-600"
-                >
-                  <Users className="h-5 w-5" />
-                  <span>Communities</span>
-                </Link>
-                <Link
-                  href="/trending"
-                  className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-primary-600"
-                >
-                  <TrendingUp className="h-5 w-5" />
-                  <span>Trending</span>
-                </Link>
-                {user && (
+            <div className="flex items-center space-x-4">
+              {isConnected && (
+                <>
                   <Link
-                    href={`/profile/${user.walletAddress}`}
-                    className="flex items-center space-x-2"
+                    href="/"
+                    className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-primary-600 transition-colors"
                   >
-                    <img
-                      src={user.avatar || '/default-avatar.png'}
-                      alt={user.displayName}
-                      className="h-8 w-8 rounded-full"
-                    />
-                    <span className="text-gray-700 dark:text-gray-300">
-                      {user.displayName}
-                    </span>
+                    <Home className="h-5 w-5" />
+                    <span className="hidden sm:inline">Home</span>
                   </Link>
-                )}
-              </>
-            )}
+                  <Link
+                    href="/communities"
+                    className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-primary-600 transition-colors"
+                  >
+                    <Users className="h-5 w-5" />
+                    <span className="hidden sm:inline">Communities</span>
+                  </Link>
+                  <Link
+                    href="/trending"
+                    className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-primary-600 transition-colors"
+                  >
+                    <TrendingUp className="h-5 w-5" />
+                    <span className="hidden sm:inline">Trending</span>
+                  </Link>
+                  <button
+                    onClick={() => setShowMessages(true)}
+                    className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-primary-600 transition-colors relative"
+                  >
+                    <Mail className="h-5 w-5" />
+                    <span className="hidden sm:inline">Messages</span>
+                  </button>
+                  {user && (
+                    <Link
+                      href={`/profile/${user.walletAddress}`}
+                      className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+                    >
+                      <img
+                        src={user.avatar || `https://ui-avatars.com/api/?name=${user.displayName}&background=0ea5e9&color=fff`}
+                        alt={user.displayName}
+                        className="h-8 w-8 rounded-full"
+                      />
+                      <span className="text-gray-700 dark:text-gray-300 hidden md:inline">
+                        {user.displayName}
+                      </span>
+                    </Link>
+                  )}
+                </>
+              )}
 
-            {isConnected ? (
-              <button
-                onClick={() => disconnect()}
-                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
-              >
-                Disconnect
-              </button>
-            ) : (
-              <button
-                onClick={() => open()}
-                className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700"
-              >
-                Connect Wallet
-              </button>
-            )}
+              <ThemeToggle />
+
+              {isConnected ? (
+                <button
+                  onClick={() => disconnect()}
+                  className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                >
+                  Disconnect
+                </button>
+              ) : (
+                <button
+                  onClick={() => open()}
+                  className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
+                >
+                  Connect Wallet
+                </button>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      {showMessages && user && (
+        <MessagesModal
+          isOpen={showMessages}
+          onClose={() => setShowMessages(false)}
+          currentUser={user}
+        />
+      )}
+    </>
   );
 }
 

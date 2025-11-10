@@ -169,11 +169,7 @@ NODE_ENV=development
 ```
 
 ### Step 3: Get API Keys
-
-1. **MongoDB**: Sign up at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) or use local MongoDB
-2. **SideShift**: Get API credentials from [SideShift.ai](https://sideshift.ai)
-3. **WalletConnect**: Create project at [WalletConnect Cloud](https://cloud.walletconnect.com)
-
+ 
 ### Step 4: Run Development Server
 
 ```bash
@@ -342,9 +338,7 @@ This is a production-ready project. Contributions are welcome! Please:
 3. Make your changes
 4. Submit a pull request
 
-## 📄 License
-
-MIT License - see LICENSE file for details
+ 
 
 ## 🙏 Acknowledgments
 
@@ -362,7 +356,7 @@ For issues, questions, or feature requests:
 
 ---
 
-**Built with ❤️ for a free, decentralized internet.**
+**Built by NIKKU, decentralized internet.**
 
 *"In a world of centralized control, DECENSORED gives you the power."*
 

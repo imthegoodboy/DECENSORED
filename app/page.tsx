@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Feed from '@/components/Feed';
 import WalletConnectPrompt from '@/components/WalletConnectPrompt';
+import ProfileSetupModal from '@/components/ProfileSetupModal';
 import axios from 'axios';
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [authError, setAuthError] = useState<string | null>(null);
+  const [showProfileSetup, setShowProfileSetup] = useState(false);
 
   useEffect(() => {
     if (isConnected && address) {
