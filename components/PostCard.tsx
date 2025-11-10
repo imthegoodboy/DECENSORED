@@ -44,7 +44,7 @@ export default function PostCard({ post, user }: PostCardProps) {
       <div className="bg-white dark:bg-gray-800 p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
         <div className="flex items-start space-x-3">
           <img
-            src={post.author?.avatar || '/default-avatar.png'}
+            src={post.author?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(post.author?.displayName || 'User')}&background=0ea5e9&color=fff`}
             alt={post.author?.displayName}
             className="h-12 w-12 rounded-full"
           />
