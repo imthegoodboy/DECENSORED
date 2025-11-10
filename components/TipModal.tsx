@@ -132,7 +132,7 @@ export default function TipModal({ post, onClose }: TipModalProps) {
 
           <div className="bg-blue-50 dark:bg-blue-900 border border-blue-200 dark:border-blue-800 rounded-lg p-3">
             <p className="text-sm text-blue-800 dark:text-blue-200">
-              💡 SideShift will automatically convert your {token} to the creator's preferred token
+              💡 SideShift will automatically convert your {token} to the creator&apos;s preferred token
             </p>
           </div>
 

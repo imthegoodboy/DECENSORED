@@ -123,7 +123,7 @@ export default function SearchPage() {
 
             {!loading && results.posts.length === 0 && results.users.length === 0 && results.communities.length === 0 && (
               <div className="text-center py-12 text-gray-500">
-                <p>No results found for "{query}"</p>
+                <p>No results found for &quot;{query}&quot;</p>
               </div>
             )}
           </div>

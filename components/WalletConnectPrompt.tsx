@@ -79,7 +79,7 @@ export default function WalletConnectPrompt() {
       </div>
 
       <div className="text-center text-sm text-gray-500 dark:text-gray-400">
-        <p>By connecting, you agree to DECENSORED's Terms of Service</p>
+        <p>By connecting, you agree to DECENSORED&apos;s Terms of Service</p>
         <p className="mt-2">
           Powered by decentralized storage • SideShift for cross-chain payments
         </p>
