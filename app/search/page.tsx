@@ -41,7 +41,7 @@ export default function SearchPage() {
       <Navbar user={user} />
       <main className="max-w-4xl mx-auto px-4 py-8">
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-          Search Results for "{query}"
+          Search Results for &quot;{query}&quot;
         </h1>
 
         {loading ? (
