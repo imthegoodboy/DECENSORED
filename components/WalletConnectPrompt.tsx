@@ -71,7 +71,7 @@ export default function WalletConnectPrompt() {
         </div>
 
         <button
-          onClick={() => open()}
+          onClick={handleConnect}
           className="w-full py-4 bg-primary-600 text-white text-lg font-semibold rounded-lg hover:bg-primary-700 transition-colors"
         >
           Connect Wallet to Get Started
