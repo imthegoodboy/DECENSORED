@@ -18,6 +18,8 @@ export default function PostCard({ post, user }: PostCardProps) {
   );
   const [likesCount, setLikesCount] = useState(post.likes?.length || 0);
   const [showTipModal, setShowTipModal] = useState(false);
+  const [showCommentModal, setShowCommentModal] = useState(false);
+  const [commentsCount, setCommentsCount] = useState(post.comments?.length || 0);
 
   const handleLike = async () => {
     try {
@@ -111,9 +113,12 @@ export default function PostCard({ post, user }: PostCardProps) {
                 <span>{post.reposts?.length || 0}</span>
               </button>
 
-              <button className="flex items-center space-x-2 hover:text-primary-600">
+              <button 
+                onClick={() => setShowCommentModal(true)}
+                className="flex items-center space-x-2 hover:text-primary-600"
+              >
                 <MessageCircle className="h-5 w-5" />
-                <span>{post.comments?.length || 0}</span>
+                <span>{commentsCount}</span>
               </button>
 
               <button
