@@ -43,7 +43,7 @@ export default async function handler(
         transaction.status = order.status === 'complete' ? 'completed' : 
                            order.status === 'failed' ? 'failed' : 'pending';
         if (order.status === 'complete') {
-          transaction.txHash = order.settleTxHash || '';
+          transaction.txHash = (order as any).settleTxHash || order.id || '';
         }
         await transaction.save();
       } catch (error) {
