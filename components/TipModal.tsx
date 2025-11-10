@@ -53,17 +53,12 @@ export default function TipModal({ post, onClose }: TipModalProps) {
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4">
         <div className="flex items-center justify-between mb-4">
-          <div>
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-              Tip {post.author?.displayName}
-            </h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Support creators with crypto
-            </p>
-          </div>
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+            Tip {post.author?.displayName}
+          </h2>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-700 dark:text-gray-400"
+            className="text-gray-500 hover:text-gray-700"
           >
             <X className="h-6 w-6" />
           </button>
@@ -135,27 +130,16 @@ export default function TipModal({ post, onClose }: TipModalProps) {
             </select>
           </div>
 
-          <div className="bg-blue-50 dark:bg-blue-900 border border-blue-200 dark:border-blue-800 rounded-lg p-3 mb-4">
+          <div className="bg-blue-50 dark:bg-blue-900 border border-blue-200 dark:border-blue-800 rounded-lg p-3">
             <p className="text-sm text-blue-800 dark:text-blue-200">
               💡 SideShift will automatically convert your {token} to the creator&apos;s preferred token
-            </p>
-          </div>
-
-          <div className="bg-gradient-to-r from-primary-50 to-blue-50 dark:from-primary-900 dark:to-blue-900 border border-primary-200 dark:border-primary-800 rounded-lg p-4 mb-4">
-            <div className="flex items-center justify-center space-x-2">
-              <span className="text-primary-600 dark:text-primary-400 font-semibold text-sm">
-                ⚡ Powered by SideShift
-              </span>
-            </div>
-            <p className="text-xs text-center text-gray-600 dark:text-gray-400 mt-1">
-              Seamless cross-chain crypto conversions
             </p>
           </div>
 
           <button
             onClick={handleTip}
             disabled={loading || !amount}
-            className="w-full py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
+            className="w-full py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? 'Processing...' : 'Send Tip'}
           </button>

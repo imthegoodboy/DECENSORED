@@ -85,27 +85,12 @@ export default async function handler(
       { content: 'The metaverse is expanding rapidly. Virtual land prices are going crazy. Are we early or is this a bubble?', author: 3, tags: ['metaverse', 'nft'] },
       { content: 'Layer 2 solutions are solving Ethereum\'s scalability issues. Arbitrum, Optimism, Polygon - which one do you use?', author: 5, community: techCommunity._id, tags: ['ethereum', 'layer2', 'scalability'] },
       { content: 'Just deployed my first dApp! The feeling of seeing your code running on the blockchain is incredible. Web3 is the future! 🎉', author: 1, community: techCommunity._id, tags: ['dapp', 'web3', 'blockchain'] },
-      { content: 'Gas fees are finally coming down! This is great news for DeFi users. Time to make some moves! 💰', author: 0, community: techCommunity._id, tags: ['defi', 'gas', 'ethereum'] },
-      { content: 'Just discovered a new yield farming protocol with 200% APY. DYOR but this looks promising! 🌾', author: 2, community: techCommunity._id, tags: ['defi', 'yield', 'farming'] },
-      { content: 'The future of social media is here! Decentralized, censorship-resistant, and user-owned. This is the way! 🚀', author: 4, tags: ['web3', 'social', 'decentralization'] },
-      { content: 'Smart contracts are revolutionizing finance. No middlemen, no banks, just code. This is the future! 💎', author: 5, community: techCommunity._id, tags: ['smart-contracts', 'defi', 'blockchain'] },
-      { content: 'NFTs are more than just JPEGs. They represent ownership, identity, and community. The utility is coming! 🎨', author: 3, tags: ['nft', 'utility', 'web3'] },
-      { content: 'DAO governance is transparent and democratic. Every vote counts. This is how organizations should work! 🗳️', author: 6, community: techCommunity._id, tags: ['dao', 'governance', 'democracy'] },
-      { content: 'Cross-chain interoperability is the key to mass adoption. One day, all chains will work together seamlessly! 🌉', author: 0, community: techCommunity._id, tags: ['cross-chain', 'interoperability', 'blockchain'] },
-      { content: 'Learning Web3 development has been the best decision I\'ve made this year. The community is amazing! 👨‍💻', author: 1, community: techCommunity._id, tags: ['web3', 'development', 'learning'] },
-      { content: 'Privacy coins are essential for financial freedom. Not everyone wants their transactions public! 🔐', author: 7, tags: ['privacy', 'crypto', 'freedom'] },
     ];
 
     const createdPosts = [];
-    // Create posts with staggered timestamps so they appear in feed
-    const baseTime = Date.now();
-    for (let i = 0; i < dummyPosts.length; i++) {
-      const postData = dummyPosts[i];
+    for (const postData of dummyPosts) {
       const author = createdUsers[postData.author];
-      const ipfsHash = `ipfs_${baseTime + i}_${Math.random().toString(36).substring(7)}`;
-      
-      // Create post with timestamp (newer posts first)
-      const postTime = new Date(baseTime - (i * 60000)); // 1 minute apart
+      const ipfsHash = `ipfs_${Date.now()}_${Math.random().toString(36).substring(7)}`;
       
       const post = await Post.create({
         author: author._id,
@@ -118,8 +103,6 @@ export default async function handler(
         reposts: [],
         comments: [],
         totalTips: 0,
-        createdAt: postTime,
-        updatedAt: postTime,
       });
 
       // Add some random likes
@@ -147,11 +130,6 @@ export default async function handler(
       users: createdUsers.length,
       posts: createdPosts.length,
       communities: 1,
-      details: {
-        totalPosts: createdPosts.length,
-        postsWithLikes: createdPosts.filter((p: any) => p.likes.length > 0).length,
-        communityPosts: createdPosts.filter((p: any) => p.community).length,
-      },
     });
   } catch (error: any) {
     console.error('Seed error:', error);
