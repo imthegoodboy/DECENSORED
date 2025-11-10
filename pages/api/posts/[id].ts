@@ -55,12 +55,12 @@ export default async function handler(
         }
 
         const isLiked = post.likes.some(
-          (likeId) => likeId.toString() === user._id.toString()
+          (likeId: any) => likeId.toString() === user._id.toString()
         );
 
         if (isLiked) {
           post.likes = post.likes.filter(
-            (likeId) => likeId.toString() !== user._id.toString()
+            (likeId: any) => likeId.toString() !== user._id.toString()
           );
         } else {
           post.likes.push(user._id);
@@ -77,12 +77,12 @@ export default async function handler(
         }
 
         const isReposted = post.reposts.some(
-          (repostId) => repostId.toString() === user._id.toString()
+          (repostId: any) => repostId.toString() === user._id.toString()
         );
 
         if (isReposted) {
           post.reposts = post.reposts.filter(
-            (repostId) => repostId.toString() !== user._id.toString()
+            (repostId: any) => repostId.toString() !== user._id.toString()
           );
         } else {
           post.reposts.push(user._id);
