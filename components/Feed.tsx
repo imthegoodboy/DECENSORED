@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import PostCard from './PostCard';
 import CreatePost from './CreatePost';
-import LoadingSpinner from './LoadingSpinner';
 import axios from 'axios';
 
 interface FeedProps {
@@ -44,7 +43,11 @@ export default function Feed({ user }: FeedProps) {
   };
 
   if (loading) {
-    return <LoadingSpinner />;
+    return (
+      <div className="flex justify-center items-center py-12">
+        <div className="text-gray-500">Loading feed...</div>
+      </div>
+    );
   }
 
   return (
