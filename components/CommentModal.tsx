@@ -19,7 +19,7 @@ export default function CommentModal({ post, onClose, onCommentAdded }: CommentM
 
   useEffect(() => {
     fetchComments();
-  }, [post._id]);
+  }, [post._id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchComments = async () => {
     try {
