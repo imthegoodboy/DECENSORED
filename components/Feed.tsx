@@ -44,11 +44,7 @@ export default function Feed({ user }: FeedProps) {
   };
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center py-12">
-        <div className="text-gray-500">Loading feed...</div>
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   return (
