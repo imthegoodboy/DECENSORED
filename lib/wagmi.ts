@@ -2,7 +2,6 @@
 
 import { createConfig, http } from 'wagmi';
 import { mainnet, polygon, base, arbitrum } from 'wagmi/chains';
-import { createWeb3Modal } from '@web3modal/wagmi/react';
 import { walletConnect, injected, coinbaseWallet } from 'wagmi/connectors';
 
 const projectId = process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || 'demo-project-id';
@@ -31,12 +30,4 @@ export const config = createConfig({
   },
   ssr: true,
 });
-
-if (typeof window !== 'undefined') {
-  createWeb3Modal({
-    wagmiConfig: config,
-    projectId,
-    enableAnalytics: false,
-  });
-}
 

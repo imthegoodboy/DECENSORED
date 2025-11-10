@@ -1,7 +1,6 @@
 'use client';
 
 import { useAccount, useDisconnect } from 'wagmi';
-import { useWeb3Modal } from '@web3modal/wagmi/react';
 import Link from 'next/link';
 import { MessageSquare, Home, Users, TrendingUp, Mail, User } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
