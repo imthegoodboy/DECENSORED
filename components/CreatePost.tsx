@@ -49,7 +49,7 @@ export default function CreatePost({ user, onPostCreated }: CreatePostProps) {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="flex items-start space-x-4">
           <img
-            src={user?.avatar || '/default-avatar.png'}
+            src={user?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.displayName || 'User')}&background=0ea5e9&color=fff`}
             alt={user?.displayName}
             className="h-10 w-10 rounded-full"
           />
