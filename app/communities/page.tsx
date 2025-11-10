@@ -62,7 +62,7 @@ export default function CommunitiesPage() {
               <Link
                 key={community._id}
                 href={`/communities/${community.slug}`}
-                className="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition-shadow p-6"
+                className="block bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition-shadow p-6"
               >
                 <div className="flex items-center space-x-4 mb-4">
                   <img
