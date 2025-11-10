@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { MessageSquare, Home, Users, TrendingUp, Mail, User } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import SearchBar from './SearchBar';
+import NotificationBell from './NotificationBell';
 import { useState } from 'react';
 import MessagesModal from './MessagesModal';
 
@@ -103,6 +104,7 @@ export default function Navbar({ user }: NavbarProps) {
                 </>
               )}
 
+              <NotificationBell />
               <ThemeToggle />
 
               {isConnected ? (
