@@ -1,10 +1,17 @@
 'use client';
 
-import { useWeb3Modal } from '@web3modal/wagmi/react';
+import { useAccount, useConnect } from 'wagmi';
 import { Shield, Zap, Globe, Lock } from 'lucide-react';
 
 export default function WalletConnectPrompt() {
-  const { open } = useWeb3Modal();
+  const { connect, connectors } = useConnect();
+  
+  const handleConnect = () => {
+    const injected = connectors.find((c) => c.id === 'injected');
+    if (injected) {
+      connect({ connector: injected });
+    }
+  };
 
   return (
     <div className="max-w-2xl mx-auto mt-16">
