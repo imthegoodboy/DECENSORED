@@ -25,9 +25,7 @@ export default function Navbar({ user }: NavbarProps) {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <Link href="/" className="flex items-center space-x-2">
-                <div className="h-8 w-8 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
-                  <MessageSquare className="h-5 w-5 text-white" />
-                </div>
+                <img src="/logo.svg" alt="DECENSORED" className="h-8 w-8" />
                 <span className="text-2xl font-bold text-gray-900 dark:text-white">
                   DECENSORED
                 </span>
