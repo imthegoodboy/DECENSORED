@@ -23,8 +23,7 @@ export default async function handler(
         .populate('community', 'name slug')
         .sort({ createdAt: -1 })
         .limit(Number(limit))
-        .skip((Number(page) - 1) * Number(limit))
-        .lean(); // Use lean() for better performance
+        .skip((Number(page) - 1) * Number(limit));
 
       const total = await Post.countDocuments(query);
 
