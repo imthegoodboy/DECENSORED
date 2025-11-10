@@ -70,13 +70,15 @@ export default function Navbar({ user }: NavbarProps) {
                     <TrendingUp className="h-5 w-5" />
                     <span className="hidden sm:inline">Trending</span>
                   </Link>
-                  <button
-                    onClick={() => setShowMessages(true)}
-                    className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-primary-600 transition-colors relative"
-                  >
-                    <Mail className="h-5 w-5" />
-                    <span className="hidden sm:inline">Messages</span>
-                  </button>
+                  {user && (
+                    <button
+                      onClick={() => setShowMessages(true)}
+                      className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-primary-600 transition-colors relative"
+                    >
+                      <Mail className="h-5 w-5" />
+                      <span className="hidden sm:inline">Messages</span>
+                    </button>
+                  )}
                   {user && (
                     <Link
                       href={`/profile/${user.walletAddress}`}
