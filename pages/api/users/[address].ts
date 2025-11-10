@@ -75,15 +75,15 @@ export default async function handler(
         }
 
         const isFollowing = user.following.some(
-          (id) => id.toString() === targetUser._id.toString()
+          (id: any) => id.toString() === targetUser._id.toString()
         );
 
         if (isFollowing) {
           user.following = user.following.filter(
-            (id) => id.toString() !== targetUser._id.toString()
+            (id: any) => id.toString() !== targetUser._id.toString()
           );
           targetUser.followers = targetUser.followers.filter(
-            (id) => id.toString() !== user._id.toString()
+            (id: any) => id.toString() !== user._id.toString()
           );
         } else {
           user.following.push(targetUser._id);
