@@ -1,8 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-
-export const dynamic = 'force-dynamic';
+import { Suspense } from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from '@/components/Navbar';
@@ -10,7 +9,7 @@ import PostCard from '@/components/PostCard';
 import Link from 'next/link';
 import { User, Hash } from 'lucide-react';
 
-export default function SearchPage() {
+function SearchContent() {
   const searchParams = useSearchParams();
   const query = searchParams?.get('q') || '';
   const [results, setResults] = useState<any>({ posts: [], users: [], communities: [] });
@@ -132,6 +131,14 @@ export default function SearchPage() {
         )}
       </main>
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <SearchContent />
+    </Suspense>
   );
 }
 
