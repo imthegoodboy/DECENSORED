@@ -78,7 +78,7 @@ export default async function handler(
       status: 'pending',
     });
 
-    if (!creator.subscribers.some((id) => id.toString() === fromUser._id.toString())) {
+    if (!creator.subscribers.some((id: any) => id.toString() === fromUser._id.toString())) {
       creator.subscribers.push(fromUser._id);
       await creator.save();
     }
