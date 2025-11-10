@@ -26,7 +26,7 @@ export default function CommunityPage() {
     if (token) {
       setUser({ id: 'current' });
     }
-  }, [slug]);
+  }, [slug]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchCommunity = async () => {
     try {
