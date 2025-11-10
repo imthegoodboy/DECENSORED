@@ -155,6 +155,17 @@ export default function PostCard({ post, user }: PostCardProps) {
           onClose={() => setShowTipModal(false)}
         />
       )}
+
+      {showCommentModal && (
+        <CommentModal
+          post={post}
+          onClose={() => setShowCommentModal(false)}
+          onCommentAdded={() => {
+            setCommentsCount(commentsCount + 1);
+            setShowCommentModal(false);
+          }}
+        />
+      )}
     </>
   );
 }
