@@ -33,11 +33,9 @@ export class SideShiftClient {
   private apiSecret: string;
 
   constructor() {
-    if (!SIDESHIFT_API_KEY || !SIDESHIFT_API_SECRET) {
-      throw new Error('SideShift API credentials not configured');
-    }
-    this.apiKey = SIDESHIFT_API_KEY;
-    this.apiSecret = SIDESHIFT_API_SECRET;
+    // API credentials are optional for public API usage
+    this.apiKey = SIDESHIFT_API_KEY || '';
+    this.apiSecret = SIDESHIFT_API_SECRET || '';
   }
 
   private getAuthHeaders() {
@@ -71,10 +69,15 @@ export class SideShiftClient {
     settleAddress: string;
   }): Promise<SideShiftOrder> {
     try {
+      // Use public API - orders can be created without auth for basic swaps
+      const headers: any = {};
+      if (this.apiKey && this.apiSecret) {
+        Object.assign(headers, this.getAuthHeaders());
+      }
       const response = await axios.post(
         `${SIDESHIFT_BASE_URL}/orders`,
         params,
-        { headers: this.getAuthHeaders() }
+        { headers }
       );
       return response.data;
     } catch (error: any) {
@@ -85,8 +88,13 @@ export class SideShiftClient {
 
   async getOrder(orderId: string): Promise<SideShiftOrder> {
     try {
+      // Public API for checking order status
+      const headers: any = {};
+      if (this.apiKey && this.apiSecret) {
+        Object.assign(headers, this.getAuthHeaders());
+      }
       const response = await axios.get(`${SIDESHIFT_BASE_URL}/orders/${orderId}`, {
-        headers: this.getAuthHeaders(),
+        headers,
       });
       return response.data;
     } catch (error: any) {
@@ -97,9 +105,8 @@ export class SideShiftClient {
 
   async getSupportedCoins(): Promise<any> {
     try {
-      const response = await axios.get(`${SIDESHIFT_BASE_URL}/coins`, {
-        headers: this.getAuthHeaders(),
-      });
+      // Public API endpoint
+      const response = await axios.get(`${SIDESHIFT_BASE_URL}/coins`);
       return response.data;
     } catch (error: any) {
       console.error('SideShift get coins error:', error.response?.data || error.message);
