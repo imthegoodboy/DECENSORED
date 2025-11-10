@@ -20,12 +20,13 @@ export default function Feed({ user }: FeedProps) {
 
   const fetchPosts = async () => {
     try {
+      setLoading(true);
       const token = localStorage.getItem('token');
       const response = await axios.get('/api/posts', {
-        params: { page, limit: 20 },
+        params: { page: 1, limit: 50 },
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
-      setPosts(response.data.posts);
+      setPosts(response.data.posts || []);
     } catch (error) {
       console.error('Error fetching posts:', error);
     } finally {
@@ -35,6 +36,10 @@ export default function Feed({ user }: FeedProps) {
 
   const handlePostCreated = (newPost: any) => {
     setPosts([newPost, ...posts]);
+    // Refresh posts to get latest from server
+    setTimeout(() => {
+      fetchPosts();
+    }, 500);
   };
 
   if (loading) {
