@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['ipfs.io', 'gateway.pinata.cloud', 'arweave.net'],
+    domains: ['ipfs.io', 'gateway.pinata.cloud', 'arweave.net', 'ui-avatars.com'],
   },
   env: {
     MONGODB_URI: process.env.MONGODB_URI,
@@ -10,6 +10,14 @@ const nextConfig = {
     SIDESHIFT_API_KEY: process.env.SIDESHIFT_API_KEY,
     SIDESHIFT_API_SECRET: process.env.SIDESHIFT_API_SECRET,
     WALLET_CONNECT_PROJECT_ID: process.env.WALLET_CONNECT_PROJECT_ID,
+  },
+  webpack: (config) => {
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      '@react-native-async-storage/async-storage': false,
+      'pino-pretty': false,
+    };
+    return config;
   },
 }
 
