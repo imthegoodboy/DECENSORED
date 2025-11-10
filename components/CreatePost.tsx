@@ -48,11 +48,17 @@ export default function CreatePost({ user, onPostCreated }: CreatePostProps) {
     <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="flex items-start space-x-4">
-          <img
-            src={user?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.displayName || 'User')}&background=0ea5e9&color=fff`}
-            alt={user?.displayName}
-            className="h-10 w-10 rounded-full"
-          />
+          {user?.avatar && ['🥺', '🤕', '😭', '😗', '😂'].includes(user.avatar) ? (
+            <div className="h-10 w-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-2xl">
+              {user.avatar}
+            </div>
+          ) : (
+            <img
+              src={user?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.displayName || 'User')}&background=0ea5e9&color=fff`}
+              alt={user?.displayName}
+              className="h-10 w-10 rounded-full"
+            />
+          )}
           <div className="flex-1">
             <textarea
               value={content}

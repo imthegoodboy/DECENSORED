@@ -84,11 +84,17 @@ export default function Navbar({ user }: NavbarProps) {
                       href={`/profile/${user.walletAddress}`}
                       className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
                     >
-                      <img
-                        src={user.avatar || `https://ui-avatars.com/api/?name=${user.displayName}&background=0ea5e9&color=fff`}
-                        alt={user.displayName}
-                        className="h-8 w-8 rounded-full"
-                      />
+                      {user.avatar && ['🥺', '🤕', '😭', '😗', '😂'].includes(user.avatar) ? (
+                        <div className="h-8 w-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-xl">
+                          {user.avatar}
+                        </div>
+                      ) : (
+                        <img
+                          src={user.avatar || `https://ui-avatars.com/api/?name=${user.displayName}&background=0ea5e9&color=fff`}
+                          alt={user.displayName}
+                          className="h-8 w-8 rounded-full"
+                        />
+                      )}
                       <span className="text-gray-700 dark:text-gray-300 hidden md:inline">
                         {user.displayName}
                       </span>
