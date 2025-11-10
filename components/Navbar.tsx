@@ -13,10 +13,20 @@ interface NavbarProps {
 }
 
 export default function Navbar({ user }: NavbarProps) {
-  const { isConnected, address } = useAccount();
-  const { open } = useWeb3Modal();
+  const { isConnected, address, connector } = useAccount();
   const { disconnect } = useDisconnect();
   const [showMessages, setShowMessages] = useState(false);
+  
+  const openWalletModal = async () => {
+    if (connector) {
+      await connector.connect();
+    } else {
+      // Fallback: try to connect injected wallet
+      if (typeof window !== 'undefined' && (window as any).ethereum) {
+        await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
+      }
+    }
+  };
 
   return (
     <>
@@ -96,7 +106,7 @@ export default function Navbar({ user }: NavbarProps) {
                 </button>
               ) : (
                 <button
-                  onClick={() => open()}
+                  onClick={openWalletModal}
                   className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
                 >
                   Connect Wallet
