@@ -96,10 +96,40 @@ export default async function handler(
         return res.status(200).json({ success: true });
       }
 
+      if (action === 'setup') {
+        const { username, displayName, bio, dateOfBirth } = req.body;
+
+        if (!username || !displayName || !dateOfBirth) {
+          return res.status(400).json({ error: 'Missing required fields' });
+        }
+
+        // Check if username is already taken
+        const existingUser = await User.findOne({ username: username.toLowerCase() });
+        if (existingUser && existingUser._id.toString() !== user._id.toString()) {
+          return res.status(400).json({ error: 'Username already taken' });
+        }
+
+        user.username = username.toLowerCase();
+        user.displayName = displayName;
+        if (bio) user.bio = bio;
+        user.dateOfBirth = new Date(dateOfBirth);
+        user.isProfileComplete = true;
+
+        await user.save();
+
+        return res.status(200).json({ user });
+      }
+
       if (action === 'update') {
         const { username, displayName, bio, avatar, subscriptionPrice, subscriptionToken } = req.body;
 
-        if (username) user.username = username;
+        if (username) {
+          const existingUser = await User.findOne({ username: username.toLowerCase() });
+          if (existingUser && existingUser._id.toString() !== user._id.toString()) {
+            return res.status(400).json({ error: 'Username already taken' });
+          }
+          user.username = username.toLowerCase();
+        }
         if (displayName) user.displayName = displayName;
         if (bio !== undefined) user.bio = bio;
         if (avatar) user.avatar = avatar;
