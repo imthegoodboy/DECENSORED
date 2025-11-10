@@ -34,11 +34,12 @@ export default async function handler(
         username: `user_${walletAddress.slice(0, 8)}`,
         displayName: `User ${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`,
         bio: '',
-        avatar: '',
+        avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(walletAddress.slice(0, 6))}&background=0ea5e9&color=fff`,
         reputation: 0,
         followers: [],
         following: [],
         posts: [],
+        isProfileComplete: false,
       });
     }
 
@@ -56,6 +57,7 @@ export default async function handler(
         reputation: user.reputation,
         followersCount: user.followers.length,
         followingCount: user.following.length,
+        isProfileComplete: user.isProfileComplete,
       },
     });
   } catch (error: any) {
