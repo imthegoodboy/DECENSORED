@@ -18,7 +18,13 @@ export default async function handler(
         .populate('author', 'username displayName avatar walletAddress reputation')
         .populate('community', 'name slug')
         .populate('likes', 'username displayName avatar')
-        .populate('comments');
+        .populate({
+          path: 'comments',
+          populate: {
+            path: 'author',
+            select: 'username displayName avatar walletAddress'
+          }
+        });
 
       if (!post) {
         return res.status(404).json({ error: 'Post not found' });
