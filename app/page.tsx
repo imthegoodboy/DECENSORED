@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useAccount, useSignMessage } from 'wagmi';
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
