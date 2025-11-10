@@ -147,6 +147,11 @@ export default async function handler(
       users: createdUsers.length,
       posts: createdPosts.length,
       communities: 1,
+      details: {
+        totalPosts: createdPosts.length,
+        postsWithLikes: createdPosts.filter((p: any) => p.likes.length > 0).length,
+        communityPosts: createdPosts.filter((p: any) => p.community).length,
+      },
     });
   } catch (error: any) {
     console.error('Seed error:', error);
