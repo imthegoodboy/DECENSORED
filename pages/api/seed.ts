@@ -15,16 +15,17 @@ export default async function handler(
   }
 
   try {
-    // Create dummy users
+    // Create dummy users with emoji avatars
+    const emojis = ['🥺', '🤕', '😭', '😗', '😂'];
     const dummyUsers = [
-      { username: 'alice_crypto', displayName: 'Alice Crypto', bio: 'Blockchain enthusiast | DeFi trader | NFT collector', walletAddress: '0x1111111111111111111111111111111111111111' },
-      { username: 'bob_web3', displayName: 'Bob Web3', bio: 'Web3 developer | Building the future of the internet', walletAddress: '0x2222222222222222222222222222222222222222' },
-      { username: 'charlie_defi', displayName: 'Charlie DeFi', bio: 'DeFi researcher | Yield farmer | Smart contract auditor', walletAddress: '0x3333333333333333333333333333333333333333' },
-      { username: 'diana_nft', displayName: 'Diana NFT', bio: 'NFT artist | Digital creator | Metaverse explorer', walletAddress: '0x4444444444444444444444444444444444444444' },
-      { username: 'eve_blockchain', displayName: 'Eve Blockchain', bio: 'Blockchain consultant | Crypto educator | Community builder', walletAddress: '0x5555555555555555555555555555555555555555' },
-      { username: 'frank_eth', displayName: 'Frank ETH', bio: 'Ethereum maximalist | Smart contract developer', walletAddress: '0x6666666666666666666666666666666666666666' },
-      { username: 'grace_dao', displayName: 'Grace DAO', bio: 'DAO contributor | Governance expert | Community organizer', walletAddress: '0x7777777777777777777777777777777777777777' },
-      { username: 'henry_crypto', displayName: 'Henry Crypto', bio: 'Crypto trader | Technical analyst | Market researcher', walletAddress: '0x8888888888888888888888888888888888888888' },
+      { username: 'alice_crypto', displayName: 'Alice Crypto', bio: 'Blockchain enthusiast | DeFi trader | NFT collector', walletAddress: '0x1111111111111111111111111111111111111111', emoji: emojis[0] },
+      { username: 'bob_web3', displayName: 'Bob Web3', bio: 'Web3 developer | Building the future of the internet', walletAddress: '0x2222222222222222222222222222222222222222', emoji: emojis[1] },
+      { username: 'charlie_defi', displayName: 'Charlie DeFi', bio: 'DeFi researcher | Yield farmer | Smart contract auditor', walletAddress: '0x3333333333333333333333333333333333333333', emoji: emojis[2] },
+      { username: 'diana_nft', displayName: 'Diana NFT', bio: 'NFT artist | Digital creator | Metaverse explorer', walletAddress: '0x4444444444444444444444444444444444444444', emoji: emojis[3] },
+      { username: 'eve_blockchain', displayName: 'Eve Blockchain', bio: 'Blockchain consultant | Crypto educator | Community builder', walletAddress: '0x5555555555555555555555555555555555555555', emoji: emojis[4] },
+      { username: 'frank_eth', displayName: 'Frank ETH', bio: 'Ethereum maximalist | Smart contract developer', walletAddress: '0x6666666666666666666666666666666666666666', emoji: emojis[0] },
+      { username: 'grace_dao', displayName: 'Grace DAO', bio: 'DAO contributor | Governance expert | Community organizer', walletAddress: '0x7777777777777777777777777777777777777777', emoji: emojis[1] },
+      { username: 'henry_crypto', displayName: 'Henry Crypto', bio: 'Crypto trader | Technical analyst | Market researcher', walletAddress: '0x8888888888888888888888888888888888888888', emoji: emojis[2] },
     ];
 
     const createdUsers = [];
@@ -32,8 +33,11 @@ export default async function handler(
       let user = await User.findOne({ walletAddress: userData.walletAddress });
       if (!user) {
         user = await User.create({
-          ...userData,
-          avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(userData.displayName)}&background=0ea5e9&color=fff`,
+          username: userData.username,
+          displayName: userData.displayName,
+          bio: userData.bio,
+          walletAddress: userData.walletAddress,
+          avatar: (userData as any).emoji || `https://ui-avatars.com/api/?name=${encodeURIComponent(userData.displayName)}&background=0ea5e9&color=fff`,
           reputation: Math.floor(Math.random() * 100),
           isProfileComplete: true,
           dateOfBirth: new Date(1990 + Math.floor(Math.random() * 20), Math.floor(Math.random() * 12), Math.floor(Math.random() * 28)),
