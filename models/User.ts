@@ -6,9 +6,11 @@ export interface IUser extends Document {
   displayName: string;
   bio: string;
   avatar: string;
+  dateOfBirth?: Date;
   ensName?: string;
   lensHandle?: string;
   reputation: number;
+  isProfileComplete: boolean;
   followers: mongoose.Types.ObjectId[];
   following: mongoose.Types.ObjectId[];
   posts: mongoose.Types.ObjectId[];
@@ -103,6 +105,13 @@ const UserSchema = new Schema<IUser>(
         ref: 'User',
       },
     ],
+    dateOfBirth: {
+      type: Date,
+    },
+    isProfileComplete: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,
