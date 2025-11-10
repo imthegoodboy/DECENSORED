@@ -21,8 +21,11 @@ export default function ProfileSetupModal({
   const [username, setUsername] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [bio, setBio] = useState('');
+  const [selectedEmoji, setSelectedEmoji] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  
+  const emojis = ['🥺', '🤕', '😭', '😗', '😂'];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,6 +47,7 @@ export default function ProfileSetupModal({
           username,
           dateOfBirth,
           bio,
+          avatar: selectedEmoji || undefined,
         },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -128,6 +132,33 @@ export default function ProfileSetupModal({
               className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-700 dark:text-white"
               required
             />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              Profile Emoji
+            </label>
+            <div className="flex items-center space-x-3 mb-4">
+              {emojis.map((emoji) => (
+                <button
+                  key={emoji}
+                  type="button"
+                  onClick={() => setSelectedEmoji(emoji)}
+                  className={`text-4xl p-2 rounded-lg border-2 transition-all ${
+                    selectedEmoji === emoji
+                      ? 'border-primary-600 bg-primary-50 dark:bg-primary-900'
+                      : 'border-gray-300 dark:border-gray-600 hover:border-primary-400'
+                  }`}
+                >
+                  {emoji}
+                </button>
+              ))}
+            </div>
+            {selectedEmoji && (
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                Selected: {selectedEmoji}
+              </p>
+            )}
           </div>
 
           <div>
