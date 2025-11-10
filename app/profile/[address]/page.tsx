@@ -9,7 +9,7 @@ import { User as UserIcon, Users, Gift, TrendingUp } from 'lucide-react';
 
 export default function ProfilePage() {
   const params = useParams();
-  const address = params.address as string;
+  const address = (params?.address as string) || '';
   const [user, setUser] = useState<any>(null);
   const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
