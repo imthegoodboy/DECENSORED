@@ -1,8 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  output: 'standalone',
   images: {
     domains: ['ipfs.io', 'gateway.pinata.cloud', 'arweave.net', 'ui-avatars.com'],
+    unoptimized: true,
   },
   env: {
     MONGODB_URI: process.env.MONGODB_URI,
@@ -22,4 +24,3 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
-
