@@ -60,11 +60,17 @@ export default function ProfilePage() {
       <main className="max-w-4xl mx-auto px-4 py-8">
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-8 mb-6">
           <div className="flex items-start space-x-6">
-            <img
-              src={user.avatar || '/default-avatar.png'}
-              alt={user.displayName}
-              className="h-24 w-24 rounded-full"
-            />
+            {user.avatar && ['🥺', '🤕', '😭', '😗', '😂'].includes(user.avatar) ? (
+              <div className="h-24 w-24 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-5xl">
+                {user.avatar}
+              </div>
+            ) : (
+              <img
+                src={user.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName)}&background=0ea5e9&color=fff`}
+                alt={user.displayName}
+                className="h-24 w-24 rounded-full"
+              />
+            )}
             <div className="flex-1">
               <div className="flex items-center space-x-3 mb-2">
                 <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
