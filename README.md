@@ -340,14 +340,7 @@ decensored/
 - **Wagmi** for Web3 React hooks
 - **Next.js** for the amazing framework
 
-## 📞 Support
-
-For issues, questions, or feature requests:
-- Open an issue on GitHub
-- Join our Discord community
-- Email: support@decensored.app
-
----
+ 
 
 **Built by NIKKU, decentralized internet.**
 
