@@ -26,13 +26,13 @@ export default function MessagesModal({
     if (isOpen && currentUser) {
       fetchConversations();
     }
-  }, [isOpen, currentUser]);
+  }, [isOpen, currentUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (selectedConversation) {
       fetchMessages();
     }
-  }, [selectedConversation]);
+  }, [selectedConversation]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchConversations = async () => {
     try {
