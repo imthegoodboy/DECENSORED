@@ -130,16 +130,27 @@ export default function TipModal({ post, onClose }: TipModalProps) {
             </select>
           </div>
 
-          <div className="bg-blue-50 dark:bg-blue-900 border border-blue-200 dark:border-blue-800 rounded-lg p-3">
+          <div className="bg-blue-50 dark:bg-blue-900 border border-blue-200 dark:border-blue-800 rounded-lg p-3 mb-4">
             <p className="text-sm text-blue-800 dark:text-blue-200">
               💡 SideShift will automatically convert your {token} to the creator&apos;s preferred token
+            </p>
+          </div>
+
+          <div className="bg-gradient-to-r from-primary-50 to-blue-50 dark:from-primary-900 dark:to-blue-900 border border-primary-200 dark:border-primary-800 rounded-lg p-4 mb-4">
+            <div className="flex items-center justify-center space-x-2">
+              <span className="text-primary-600 dark:text-primary-400 font-semibold text-sm">
+                ⚡ Powered by SideShift
+              </span>
+            </div>
+            <p className="text-xs text-center text-gray-600 dark:text-gray-400 mt-1">
+              Seamless cross-chain crypto conversions
             </p>
           </div>
 
           <button
             onClick={handleTip}
             disabled={loading || !amount}
-            className="w-full py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
           >
             {loading ? 'Processing...' : 'Send Tip'}
           </button>
