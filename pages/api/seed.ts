@@ -85,6 +85,15 @@ export default async function handler(
       { content: 'The metaverse is expanding rapidly. Virtual land prices are going crazy. Are we early or is this a bubble?', author: 3, tags: ['metaverse', 'nft'] },
       { content: 'Layer 2 solutions are solving Ethereum\'s scalability issues. Arbitrum, Optimism, Polygon - which one do you use?', author: 5, community: techCommunity._id, tags: ['ethereum', 'layer2', 'scalability'] },
       { content: 'Just deployed my first dApp! The feeling of seeing your code running on the blockchain is incredible. Web3 is the future! 🎉', author: 1, community: techCommunity._id, tags: ['dapp', 'web3', 'blockchain'] },
+      { content: 'Gas fees are finally coming down! This is great news for DeFi users. Time to make some moves! 💰', author: 0, community: techCommunity._id, tags: ['defi', 'gas', 'ethereum'] },
+      { content: 'Just discovered a new yield farming protocol with 200% APY. DYOR but this looks promising! 🌾', author: 2, community: techCommunity._id, tags: ['defi', 'yield', 'farming'] },
+      { content: 'The future of social media is here! Decentralized, censorship-resistant, and user-owned. This is the way! 🚀', author: 4, tags: ['web3', 'social', 'decentralization'] },
+      { content: 'Smart contracts are revolutionizing finance. No middlemen, no banks, just code. This is the future! 💎', author: 5, community: techCommunity._id, tags: ['smart-contracts', 'defi', 'blockchain'] },
+      { content: 'NFTs are more than just JPEGs. They represent ownership, identity, and community. The utility is coming! 🎨', author: 3, tags: ['nft', 'utility', 'web3'] },
+      { content: 'DAO governance is transparent and democratic. Every vote counts. This is how organizations should work! 🗳️', author: 6, community: techCommunity._id, tags: ['dao', 'governance', 'democracy'] },
+      { content: 'Cross-chain interoperability is the key to mass adoption. One day, all chains will work together seamlessly! 🌉', author: 0, community: techCommunity._id, tags: ['cross-chain', 'interoperability', 'blockchain'] },
+      { content: 'Learning Web3 development has been the best decision I\'ve made this year. The community is amazing! 👨‍💻', author: 1, community: techCommunity._id, tags: ['web3', 'development', 'learning'] },
+      { content: 'Privacy coins are essential for financial freedom. Not everyone wants their transactions public! 🔐', author: 7, tags: ['privacy', 'crypto', 'freedom'] },
     ];
 
     const createdPosts = [];
