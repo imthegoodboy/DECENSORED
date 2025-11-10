@@ -6,6 +6,7 @@ import { formatDistanceToNow } from 'date-fns';
 import axios from 'axios';
 import TipModal from './TipModal';
 import CommentModal from './CommentModal';
+import ShareButton from './ShareButton';
 
 interface PostCardProps {
   post: any;
@@ -135,6 +136,8 @@ export default function PostCard({ post, user }: PostCardProps) {
                 <span>Tip</span>
               </button>
 
+              <ShareButton postId={post._id} postContent={post.content} />
+              
               <a
                 href={`https://ipfs.io/ipfs/${post.ipfsHash}`}
                 target="_blank"
@@ -142,7 +145,7 @@ export default function PostCard({ post, user }: PostCardProps) {
                 className="flex items-center space-x-2 hover:text-primary-600"
               >
                 <ExternalLink className="h-4 w-4" />
-                <span className="text-xs">View on IPFS</span>
+                <span className="text-xs">IPFS</span>
               </a>
             </div>
 
