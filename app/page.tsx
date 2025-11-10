@@ -44,6 +44,11 @@ export default function Home() {
 
       localStorage.setItem('token', verifyRes.data.token);
       setUser(verifyRes.data.user);
+      
+      // Show profile setup if profile is not complete
+      if (!verifyRes.data.user.isProfileComplete) {
+        setShowProfileSetup(true);
+      }
     } catch (error: any) {
       console.error('Auth error:', error);
       if (error.message && !error.message.includes('User rejected')) {
@@ -52,6 +57,11 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleProfileComplete = (updatedUser: any) => {
+    setUser(updatedUser);
+    setShowProfileSetup(false);
   };
 
   if (loading) {
@@ -67,12 +77,21 @@ export default function Home() {
       <Navbar user={user} />
       <main className="max-w-4xl mx-auto px-4 py-8">
         {authError && (
-          <div className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+          <div className="mb-4 p-4 bg-red-100 dark:bg-red-900 border border-red-400 text-red-700 dark:text-red-200 rounded-lg">
             {authError}
           </div>
         )}
         {isConnected ? <Feed user={user} /> : <WalletConnectPrompt />}
       </main>
+
+      {showProfileSetup && address && (
+        <ProfileSetupModal
+          isOpen={showProfileSetup}
+          onClose={() => setShowProfileSetup(false)}
+          walletAddress={address}
+          onComplete={handleProfileComplete}
+        />
+      )}
     </div>
   );
 }
