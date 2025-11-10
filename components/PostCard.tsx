@@ -5,6 +5,7 @@ import { Heart, Repeat2, MessageCircle, Gift, ExternalLink } from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns';
 import axios from 'axios';
 import TipModal from './TipModal';
+import CommentModal from './CommentModal';
 
 interface PostCardProps {
   post: any;
