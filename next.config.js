@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'standalone',
   images: {
     domains: ['ipfs.io', 'gateway.pinata.cloud', 'arweave.net', 'ui-avatars.com'],
     unoptimized: true,
