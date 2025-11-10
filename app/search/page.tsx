@@ -10,7 +10,7 @@ import { User, Hash } from 'lucide-react';
 
 export default function SearchPage() {
   const searchParams = useSearchParams();
-  const query = searchParams.get('q') || '';
+  const query = searchParams?.get('q') || '';
   const [results, setResults] = useState<any>({ posts: [], users: [], communities: [] });
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<any>(null);
