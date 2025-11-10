@@ -46,10 +46,10 @@ export default function Feed({ user }: FeedProps) {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       <CreatePost user={user} onPostCreated={handlePostCreated} />
       
-      <div className="space-y-4">
+      <div className="divide-y divide-gray-200 dark:divide-gray-700">
         {posts.length === 0 ? (
           <div className="text-center py-12 text-gray-500">
             <p className="text-lg">No posts yet. Be the first to post!</p>

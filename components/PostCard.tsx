@@ -38,8 +38,8 @@ export default function PostCard({ post, user }: PostCardProps) {
 
   return (
     <>
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-        <div className="flex items-start space-x-4">
+      <div className="bg-white dark:bg-gray-800 p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+        <div className="flex items-start space-x-3">
           <img
             src={post.author?.avatar || '/default-avatar.png'}
             alt={post.author?.displayName}
