@@ -97,7 +97,7 @@ export default async function handler(
       }
 
       if (action === 'setup') {
-        const { username, displayName, bio, dateOfBirth } = req.body;
+        const { username, displayName, bio, dateOfBirth, avatar } = req.body;
 
         if (!username || !displayName || !dateOfBirth) {
           return res.status(400).json({ error: 'Missing required fields' });
@@ -112,6 +112,7 @@ export default async function handler(
         user.username = username.toLowerCase();
         user.displayName = displayName;
         if (bio) user.bio = bio;
+        if (avatar) user.avatar = avatar;
         user.dateOfBirth = new Date(dateOfBirth);
         user.isProfileComplete = true;
 

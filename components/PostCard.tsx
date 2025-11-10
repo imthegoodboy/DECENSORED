@@ -43,11 +43,17 @@ export default function PostCard({ post, user }: PostCardProps) {
     <>
       <div className="bg-white dark:bg-gray-800 p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
         <div className="flex items-start space-x-3">
-          <img
-            src={post.author?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(post.author?.displayName || 'User')}&background=0ea5e9&color=fff`}
-            alt={post.author?.displayName}
-            className="h-12 w-12 rounded-full"
-          />
+          {post.author?.avatar && ['🥺', '🤕', '😭', '😗', '😂'].includes(post.author.avatar) ? (
+            <div className="h-12 w-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-3xl">
+              {post.author.avatar}
+            </div>
+          ) : (
+            <img
+              src={post.author?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(post.author?.displayName || 'User')}&background=0ea5e9&color=fff`}
+              alt={post.author?.displayName}
+              className="h-12 w-12 rounded-full"
+            />
+          )}
           <div className="flex-1">
             <div className="flex items-center space-x-2 mb-2">
               <span className="font-semibold text-gray-900 dark:text-white">
