@@ -97,9 +97,15 @@ export default async function handler(
     ];
 
     const createdPosts = [];
-    for (const postData of dummyPosts) {
+    // Create posts with staggered timestamps so they appear in feed
+    const baseTime = Date.now();
+    for (let i = 0; i < dummyPosts.length; i++) {
+      const postData = dummyPosts[i];
       const author = createdUsers[postData.author];
-      const ipfsHash = `ipfs_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+      const ipfsHash = `ipfs_${baseTime + i}_${Math.random().toString(36).substring(7)}`;
+      
+      // Create post with timestamp (newer posts first)
+      const postTime = new Date(baseTime - (i * 60000)); // 1 minute apart
       
       const post = await Post.create({
         author: author._id,
@@ -112,6 +118,8 @@ export default async function handler(
         reposts: [],
         comments: [],
         totalTips: 0,
+        createdAt: postTime,
+        updatedAt: postTime,
       });
 
       // Add some random likes
